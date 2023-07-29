@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>The Impact of Automation on Jobs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-annotation"></script>
+    <script src="https://d3js.org/d3-annotation.v2.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/d3-svg-annotation@2.5.1/d3-annotation.min.js"></script>
+
+
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <style>
+        .tooltip {
+          position: absolute;
+          text-align: center;
+          width: 120px;
+          height: 28px;
+          padding: 2px;
+          font: 12px sans-serif;
+          background: rgb(255, 255, 255);
+          border: 0px;
+          border-radius: 8px;
+          pointer-events: none;
+        }
+        section.my-8 {
+          position: relative;
+        }
+        </style>
+</head>
+<body class="font-sans leading-6 text-gray-800 m-0 p-0 bg-gray-100 flex flex-col items-center">
+    <header class="w-full relative flex items-end justify-center" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url('static/Headline photo.jpeg') center center / cover no-repeat; height: 90vh">
+        <div class="text-center text-white px-5 py-5">
+            <h1 class="text-4xl md:text-6xl lg:text-6xl font-bold">How AI Might Change the Future of Employment</h1>
+            <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">By: Ritul K. Soni</p>
+            <p class="mt-2 text-lg md:text-xl lg:text-2xl">July 24, 2023</p>
+        </div>
+    </header>
+
+    <main class="w-full md:w-4/5 lg:w-3/4 flex flex-col items-center">
+        <article>
+            <section class="w-full">
+                <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">Let's Talk About It</p>
+                <p class="text-lg text-gray-800 mt-4">Let me paint a picture of the not-so-distant future: a future in which routine and regular tasks once handled by humans are swiftly and efficiently automated by artificial intelligence.</p>
+                <p class="text-lg text-gray-800 mt-4">Just as the steam engine displaced many workers in the past but paved the way for new avenues of jobs, today's AI revolution is set to bring about transformative changes to the job market.</p>
+                <p class="text-lg text-gray-800 mt-4">We need to take a step back and learn from history, understanding that while automation may lead to fears of job security and employment, it also presents opportunities for growth and advancement.</p>
+                <p class="text-lg text-gray-800 mt-4">Much like the industrial era, where machines outperformed human labor in various tasks, we are now witnessing a similar paradigm shift as robots and AI demonstrate their superior capabilities in diverse fields.</p>
+                <p class="text-lg text-gray-800 mt-4">Whether you're a laborer, a writer, a doctor, or even a CEO, the encroachment of AI into the workforce seems inevitable. It may be unsettling, but we must recognize that the past has shown us that such technological disruptions can lead to new, unforeseen possibilities.</p>
+                <p class="text-lg text-gray-800 mt-4">Perhaps, in time, we will find ourselves living in a utopia where machines handle mundane tasks, liberating us to explore our creativity, passions, and the pursuit of knowledge, ushering humanity into a golden age of boundless potential.</p>
+            </section>
+
+            <!-- Here is the Section on Occupations that lost the greatest % of employees -->
+            <section class="w-full"> 
+                <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">Let's First Take a Look at Occupations That Declined The Most in The Past 20 Years</p>
+                <h2 class="text-2xl">(Hover Over Each Bubble For More Information)</h2>
+                <svg id="bubbleChart"></svg>
+                <script src="src/BubbleChart.js"></script>
+
+                <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">The Impact of Technology and Automation on Employment</p>
+                <p class="text-lg text-gray-800 mt-4">The top 10 occupations that experienced the greatest percentage of employment loss from 2002 to 2022 showcase the impact of technology and automation on the job market. Many of these jobs were susceptible to automation due to the repetitive and routine nature of their tasks. For instance, occupations like Refractory Materials Repairers, Drilling and Boring Machine Tool Setters, and Photographic Process Workers involved specific, repetitive tasks that could be efficiently handled by machines.</p>
+                <p class="text-lg text-gray-800 mt-4">Additionally, technological advancements in industries like entertainment, communications, and education have contributed to the decline of jobs such as Entertainment Attendants, Correspondence Clerks, and Miscellaneous Teachers and Instructors. Automation, digitalization, and online platforms have significantly changed the way these services are delivered, leading to reduced demand for certain roles.</p>
+            
+                <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">Automation and Future of Work</p>
+                <p class="text-lg text-gray-800 mt-4">Looking at the decline of these jobs, it becomes apparent that many routine and repetitive tasks are becoming increasingly automated. With the emergence of AI and other advanced technologies, jobs that involve predictable, manual, or data-driven tasks are at higher risk. As we move forward, it is crucial for the workforce to focus on developing skills that complement and work synergistically with automation. Jobs that require creativity, complex problem-solving, emotional intelligence, and adaptability are likely to remain relevant and less susceptible to automation.</p>
+                <p class="text-lg text-gray-800 mt-4">Furthermore, society should prioritize investments in education and retraining programs to equip individuals with the necessary skills for the jobs of the future. Emphasizing lifelong learning and fostering a culture of adaptability will be essential to thrive in an increasingly automated world. Policymakers and businesses should also consider ethical and responsible implementation of AI to ensure that automation benefits society as a whole and doesn't exacerbate existing inequalities in the job market.</p>
+                <p class="text-lg text-gray-800 mt-4">Ultimately, while technology and automation present challenges for the job market, they also offer opportunities for increased productivity and innovation. By proactively preparing for the changing job landscape and embracing the potential of AI, we can create a future where humans and machines work together harmoniously to achieve greater prosperity and well-being.</p>
+            </section>
+
+
+            <!-- Here is the Section About Telephone Operators -->
+            <section class="w-full">
+                <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">Let's Explore What Happened to Telephone Operators</p>
+                <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Rise and Fall of Telephone Operators: A Cautionary Tale of Automation</p>
+                <p class="text-lg text-gray-800 mt-4">The history of telephone operators serves as a cautionary tale of how automation can dramatically reshape the job market. Once a bustling occupation primarily staffed by young women in the 20th century, telephone operators were experts at manually connecting callers to their desired recipients. However, with the advent of Interactive Voice Response (IVR) technology, the need for human operators dwindled rapidly. IVR systems efficiently handled call routing and basic customer inquiries, rendering thousands of telephone operators obsolete. The decline of this once-thriving profession highlights the vulnerability of routine and repetitive jobs to automation's disruptive force.</p>
+
+                <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Impact of AI on Jobs: Lessons from the Telephone Operator Displacement</p>
+                <p class="text-lg text-gray-800 mt-4">The story of telephone operators serves as an essential case study for understanding the potential impact of artificial intelligence (AI) on the job market. As AI and automation continue to advance, various other routine-based roles could face a similar fate. Jobs that involve repetitive tasks, simple decision-making processes, and rule-based operations might be vulnerable to displacement by intelligent machines. To adapt to the changing landscape, workers must focus on developing skills that complement AI rather than compete with it. By acquiring problem-solving abilities, critical thinking, and creativity, individuals can position themselves for new roles that emerge in symbiosis with AI technologies.</p>
+                <svg id="TelephoneOP"></svg>
+                <script src="src/LineChart.js"></script>
+                <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Shifting Nature of Work: Embracing Change and Upskilling for the Future</p>
+                <p class="text-lg text-gray-800 mt-4">The decline of telephone operators and the rise of automation highlight the ever-evolving nature of work in our technologically-driven world. Rather than fearing job displacement, it is crucial for both workers and industries to embrace change and proactively upskill to stay relevant. As certain jobs become automated, new opportunities arise in more complex and specialized fields. By fostering a culture of continuous learning and adaptability, individuals can future-proof their careers and thrive in a job market that leverages the power of AI and automation.</p>
+
+                <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Future of Work: Human-AI Collaboration for Enhanced Efficiency</p>
+                <p class="text-lg text-gray-800 mt-4">As AI and automation reshape the job landscape, a new era of human-AI collaboration emerges. Instead of solely focusing on job replacement, organizations and policymakers should explore ways to integrate AI technologies to enhance human capabilities and productivity. By harnessing the strengths of AI for routine tasks and allowing human expertise to shine in complex problem-solving, decision-making, and emotional intelligence, we can create a more efficient and harmonious workforce. Emphasizing the value of human skills in conjunction with AI technologies will pave the way for a future where automation complements human potential, leading to a more prosperous and equitable society.</p>
+            </section>
+
+
+            <!-- Here is another section  -->
+            <section class="w-full">
+                <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">What jobs are at risk today?</p>
+                <div id="barChart"></div>
+                <button id="filter20">Past 20 Years</button>
+                <button id="filter10">Past 10 Years</button>
+                <button id="filter5">Past 5 Years</button>
+                <script src="src/BarChart.js"></script>
+
+
+                <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Shifting Nature of Work: Embracing Change and Upskilling for the Future</p>
+                <p class="text-lg text-gray-800 mt-4">The .</p>
+
+                <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Future of Work: Human-AI Collaboration for Enhanced Efficiency</p>
+                <p class="text-lg text-gray-800 mt-4">As AI .</p>
+            </section>
+
+
+        </article>
+    </main>
+
+    <footer class="border-t border-gray-200 px-0 py-5 text-center text-gray-500 text-sm w-full bg-white">
+        <p>Project By: Ritul K. Soni 2023 ©</p>
+    </footer>
+
+</body>
+</html>
