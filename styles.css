@@ -71,3 +71,20 @@ button {
 #filter5:hover {
     transform: scale(1.1);
 }
+
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 120px;
+    height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: rgb(255, 255, 255);
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+  section.my-8 {
+    position: relative;
+  }
