@@ -87,8 +87,8 @@ async function drawBarChart(timeFilter) {
   // Define the tooltip
   const tooltip = d3.select("body").append("div") 
     .attr("class", "tooltip") 
-    .style("opacity", 0);
-
+    .style("opacity", 0)
+    .style("font-size", "20px");
   // Add bars
   let bars = svg.selectAll(".bar")
     .data(percentChangeData)
