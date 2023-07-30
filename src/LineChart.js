@@ -83,11 +83,6 @@ async function drawLineChart() {
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
   .attr("stroke-dashoffset", -totalLength);
 
-  path.transition()
-    .duration(4000)
-    .ease(d3.easeLinear)
-    .attr("stroke-dashoffset", 0);
-
   const annotationData = [{
     note: {
       label: "Over 50,000 Employed in the US with Majority of Workers Female",
@@ -148,6 +143,21 @@ async function drawLineChart() {
         .call(makeAnnotations);
     }
   });
+
+  // Intersection Observer
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        path.transition()
+            .duration(4000)
+            .ease(d3.easeLinear)
+            .attr("stroke-dashoffset", 0);
+        animated = true;
+      }
+    });
+  });
+
+  observer.observe(svg.node());
 }
 
 drawLineChart();
