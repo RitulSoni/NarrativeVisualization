@@ -88,7 +88,7 @@ async function drawBarChart(timeFilter, title) {
   const tooltip = d3.select("body").append("div") 
     .attr("class", "tooltip") 
     .style("opacity", 0)
-    .style("font-size", "20px");
+    .style("font-size", "14px");
   // Add bars
   let bars = svg.selectAll(".bar")
     .data(percentChangeData)
@@ -100,49 +100,66 @@ async function drawBarChart(timeFilter, title) {
     .attr("height", d => height - yScale(d.percent_change))
     .attr("fill", d => colorAssignments[d.occupation]); // Use the color assignments here
 
-  bars.on("mouseover", function(event, d) { 
+    bars.on("mouseover", function(event, d) { 
       d3.select(this).style("fill", "darkblue");
       tooltip.transition()
-         .duration(200)
-         .style("opacity", .9);
+          .duration(200)
+          .style("opacity", .9);
       tooltip.html("Occupation: " + d.occupation 
+          + "<br>From " + d.baseYear + " to " + d.latestYear 
+          + "<br>Starting Total Employed in " + d.baseYear + ": " + d.startEmployment
+          + "<br>Total Employed in " + d.latestYear + ": " + d.endEmployment
           + "<br>Percent Change: " + d.percent_change.toFixed(2) + "%")
-         .style("left", (event.pageX) + "px")
-         .style("top", (event.pageY - 28) + "px");
-    })
-    .on("mouseout", function(d, i) {
+          .style("left", (event.pageX) + "px")
+          .style("top", (event.pageY - 28) + "px");
+  })
+  .on("mouseout", function(d, i) {
       d3.select(this).style("fill", function() {
-        return colorAssignments[d.occupation]; // Reset bar color to its original color
+      return colorAssignments[d.occupation]; // Reset bar color to its original color
       });
       tooltip.transition()
-         .duration(500)
-         .style("opacity", 0);
-    });
+          .duration(500)
+          .style("opacity", 0);
+  });
 }
 function calculatePercentChange(data, yearDiff) {
   const pivotData = {};
   data.forEach(d => {
-      if (!(d.occupation in pivotData)) {
-          pivotData[d.occupation] = {};
-      }
-      pivotData[d.occupation][d.year] = d.tot_emp;
+    if (!(d.occupation in pivotData)) {
+        pivotData[d.occupation] = {};
+    }
+    pivotData[d.occupation][d.year] = d.tot_emp;
   });
 
   const percentChangeData = [];
   for (let title in pivotData) {
-      const years = Object.keys(pivotData[title]);
-      const latestYear = Math.max(...years);
-      const baseYear = latestYear - yearDiff;
-
-      if (baseYear in pivotData[title]) {
-          const changePercent = (pivotData[title][latestYear] - pivotData[title][baseYear]) / pivotData[title][baseYear] * 100;
-          percentChangeData.push({occupation: title, percent_change: changePercent});
-      }
+    const years = Object.keys(pivotData[title]).map(Number);
+    const latestYear = Math.max(...years);
+    const baseYear = latestYear - yearDiff;
+  
+    // Filter out years that don't match the baseYear or latestYear
+    const validYears = years.filter(year => year === baseYear || year === latestYear);
+    
+    if (validYears.length === 2) {
+        const changePercent = (pivotData[title][latestYear] - pivotData[title][baseYear]) / pivotData[title][baseYear] * 100;
+        const startEmployment = pivotData[title][baseYear];
+        const endEmployment = pivotData[title][latestYear];
+        percentChangeData.push({
+            occupation: title,
+            percent_change: changePercent,
+            startEmployment: startEmployment,
+            endEmployment: endEmployment,
+            baseYear: baseYear,
+            latestYear: latestYear
+        });
+    }
   }
 
   percentChangeData.sort((a, b) => b.percent_change - a.percent_change);
   return percentChangeData.slice(0, 10);
 }
+
+
 
 function updateChart(timeFilter, title) {
   d3.select("#barChart").selectAll("*").remove();
