@@ -7,8 +7,8 @@ async function drawLineChart() {
       // Set up SVG
       const svg = d3.select("#TelephoneOP"),
             margin = {top: 70, right: 200, bottom: 50, left: 100},
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+            width = 1460 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
     
       const g = svg.append("g")
                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -94,7 +94,15 @@ path.attr("stroke-dasharray", totalLength + " " + totalLength)
           .attr("stroke-dashoffset", 0)
           .on("end", () => {  // After animation ends, add annotation.
             const annotationData = [{
-              
+              note: {
+                label: "Over 50,000 Employed in the US with Majority of Workers Female",
+                title: "Bustling Job"
+              },
+              x: xScale(2002),
+              y: yScale(data.find(d => d.year === 2002).value),
+              dy: 25,
+              dx: 150
+            }, {
               note: {
                 label: "# of Telephone Operators Employed Decresed 50% Compared to 5 Years Prior",
                 title: "Employment Halved"
@@ -102,7 +110,7 @@ path.attr("stroke-dasharray", totalLength + " " + totalLength)
               x: xScale(2007),
               y: yScale(data.find(d => d.year === 2007).value),
               dy: -50,
-              dx: 50
+              dx: 100
             }, {
 
               note: {
@@ -115,7 +123,7 @@ path.attr("stroke-dasharray", totalLength + " " + totalLength)
               dx: 50
             }, {
               note: {
-                label: "In 2022, there were approximately 4000 Telephone Operators in the US",
+                label: "In 2022, There Were Only Approximately 4000 Telephone Operators in the US",
                 title: "Almost Obsolete"
               },
               x: xScale(2022),
