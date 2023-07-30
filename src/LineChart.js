@@ -1,14 +1,21 @@
 async function drawLineChart() {
   // Load and process data
+  d3.select("#TelephoneOP").selectAll("*").remove(); // Clear previous chart
   let data = await d3.csv('data/Adjusted CSV.csv');
   data = data.filter(d => d.OCC_TITLE === 'Telephone Operators' || d.OCC_TITLE === 'Telephone operators'|| d.OCC_TITLE === 'telephone operators');
   data = data.map(d => ({year: +d.YEAR, value: +d.TOT_EMP}));
 
-  // Set up SVG
-  const svg = d3.select("#TelephoneOP"),
-        margin = {top: 70, right: 200, bottom: 50, left: 100},
-        width = 1460 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+  const svgWidth = window.innerWidth * 0.9, // Adjust as needed
+  svgHeight = window.innerHeight * 0.5, // Adjust as needed
+  margin = {top: 70, right: 200, bottom: 50, left: 100},
+  width = svgWidth - margin.left - margin.right,
+  height = svgHeight - margin.top - margin.bottom;
+
+  const svg = d3.select("#TelephoneOP")
+  .attr("width", svgWidth)
+  .attr("height", svgHeight)
+  .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
+
 
   const g = svg.append("g")
                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -161,3 +168,4 @@ async function drawLineChart() {
 }
 
 drawLineChart();
+window.addEventListener("resize", drawLineChart);
