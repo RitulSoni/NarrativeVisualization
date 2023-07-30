@@ -3,21 +3,27 @@ let colorAssignments = {};
 
 // Load the data
 async function drawBarChart(baseYear, latestYear, title) {
+  d3.select("#barChart").selectAll("*").remove(); // Clear previous chart
   let rawData = await d3.csv('data/Adjusted CSV.csv');
   rawData = rawData.filter(d => d.OCC_TITLE !== "All Occupations")
                    .map(d => ({year: +d.YEAR, occupation: d.OCC_TITLE, tot_emp: +d.TOT_EMP}));
 
   const percentChangeData = calculatePercentChange(rawData, baseYear, latestYear);
 
-  // Define SVG dimensions
-  const margin = {top: 80, right: 200, bottom: 400, left: 100},
-        width = 1260 - margin.left - margin.right,
-        height = 800 - margin.top - margin.bottom;
+  
+
+
+  const svgWidth = window.innerWidth * 0.9, // Adjust as needed
+  svgHeight = window.innerHeight * 0.8, // Adjust as needed
+  margin = {top: 80, right: 200, bottom: 400, left: 100},
+  width = svgWidth - margin.left - margin.right,
+  height = svgHeight - margin.top - margin.bottom;
 
   // Create SVG
   const svg = d3.select("#barChart")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", svgWidth)
+    .attr("height", svgHeight)
+    .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -175,5 +181,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     updateChart(2017, 2022, "Past 5 Years Occupations with Greatest % Growth in Employment");
   });
 
+  drawBarChart(2002, 2022, "Top 10 Occupations with Greatest % Growth in Employment in the Past 20 Years");
+});
+
+window.addEventListener("resize", () => {
   drawBarChart(2002, 2022, "Top 10 Occupations with Greatest % Growth in Employment in the Past 20 Years");
 });
