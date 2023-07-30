@@ -53,7 +53,7 @@ async function drawBubbleChart() {
 
   const svgWidth = window.innerWidth * 0.8, // Adjust as needed
         svgHeight = window.innerHeight * 0.5, // Adjust as needed
-        margin = {top: 60, right: 40, bottom: 60, left: 650},
+        margin = {top: 60, right: 40, bottom: 100, left: 650},
         width = svgWidth - margin.left - margin.right,
         height = svgHeight - margin.top - margin.bottom;
 
@@ -90,7 +90,7 @@ async function drawBubbleChart() {
   // If you also want to adjust the font size of the axis labels, you can do so as follows:
   g.append("text") // More descriptive label
       .attr("x", width / 2)
-      .attr("y", 450)
+      .attr("y", 410)
       .attr("fill", "black")
       .style("text-anchor", "middle")
       .style("font-size", "18px") // Adjust this value
