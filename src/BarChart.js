@@ -28,7 +28,7 @@ async function drawBarChart(timeFilter) {
      .attr("text-anchor", "middle")  
      .style("font-size", "24px") 
      .style("font-weight", "bold")  
-     .text("Percent Change in Employment by Occupation");
+     .text("Top 10 Occupations with Greatest Employment Growth");
 
   // Create scales
   const xScale = d3.scaleBand().range([0, width]).padding(0.2),
@@ -70,7 +70,9 @@ async function drawBarChart(timeFilter) {
   svg.append("text")
      .attr("transform", `translate(${width/2},${height + margin.bottom - 200})`)
      .style("text-anchor", "middle")
-     .text("Occupation");
+     .style("font-size", "20px") 
+     .text("Occupations");
+     
 
   // Add Y axis label
   svg.append("text")
@@ -78,8 +80,9 @@ async function drawBarChart(timeFilter) {
      .attr("y", 0 - margin.left)
      .attr("x", 0 - (height / 2))
      .attr("dy", "1em")
-     .style("text-anchor", "middle")
-     .text("Percent Change"); 
+     .style("text-anchor", "middle",)
+     .style("font-size", "20px") 
+     .text("Percent Change in Total Employed"); 
 
   // Define the tooltip
   const tooltip = d3.select("body").append("div") 
