@@ -1,7 +1,7 @@
 async function drawLineChart() {
       // Load and process data
       let data = await d3.csv('data/Adjusted CSV.csv');
-      data = data.filter(d => d.OCC_TITLE === 'Telephone Operators');
+      data = data.filter(d => d.OCC_TITLE === 'Telephone Operators' || d.OCC_TITLE === 'Telephone operators'|| d.OCC_TITLE === 'telephone operators');
       data = data.map(d => ({year: +d.YEAR, value: +d.TOT_EMP}));
     
       // Set up SVG
@@ -21,7 +21,7 @@ async function drawLineChart() {
          .attr("x", width / 2)             
          .attr("y", 30)
          .attr("text-anchor", "middle")  
-         .style("font-size", "20px") 
+         .style("font-size", "25px") 
          .text("The Decline in Telephone Operator Jobs");
     
       // Set up scales
@@ -94,9 +94,20 @@ path.attr("stroke-dasharray", totalLength + " " + totalLength)
           .attr("stroke-dashoffset", 0)
           .on("end", () => {  // After animation ends, add annotation.
             const annotationData = [{
+              
               note: {
-                label: "2016 marked the beginning of the complete obsoleteness of Telephone Operators",
-                title: "Important Year"
+                label: "# of Telephone Operators Employed Decresed 50% Compared to 5 Years Prior",
+                title: "Employment Halved"
+              },
+              x: xScale(2007),
+              y: yScale(data.find(d => d.year === 2007).value),
+              dy: -50,
+              dx: 50
+            }, {
+
+              note: {
+                label: "Most Companies Implement Automated Voice Response (AVR) Systems by 2016 With the Rest to Quickly Catch Up",
+                title: "Automated Systems"
               },
               x: xScale(2016),
               y: yScale(data.find(d => d.year === 2016).value),
@@ -105,7 +116,7 @@ path.attr("stroke-dasharray", totalLength + " " + totalLength)
             }, {
               note: {
                 label: "In 2022, there were approximately 4000 Telephone Operators in the US",
-                title: "Few Operators"
+                title: "Almost Obsolete"
               },
               x: xScale(2022),
               y: yScale(data.find(d => d.year === 2022).value),
