@@ -6,11 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/d3-annotation"></script>
-    <script src="https://d3js.org/d3-annotation.v2.min.js"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://unpkg.com/d3-svg-annotation@2.5.1/d3-annotation.min.js"></script>
-
-
     <script src="https://unpkg.com/topojson-client@3"></script>
     <style>
         .tooltip {
@@ -49,6 +45,7 @@
                 <p class="text-lg text-gray-800 mt-4">Much like the industrial era, where machines outperformed human labor in various tasks, we are now witnessing a similar paradigm shift as robots and AI demonstrate their superior capabilities in diverse fields.</p>
                 <p class="text-lg text-gray-800 mt-4">Whether you're a laborer, a writer, a doctor, or even a CEO, the encroachment of AI into the workforce seems inevitable. It may be unsettling, but we must recognize that the past has shown us that such technological disruptions can lead to new, unforeseen possibilities.</p>
                 <p class="text-lg text-gray-800 mt-4">Perhaps, in time, we will find ourselves living in a utopia where machines handle mundane tasks, liberating us to explore our creativity, passions, and the pursuit of knowledge, ushering humanity into a golden age of boundless potential.</p>
+
             </section>
 
             <!-- Here is the Section on Occupations that lost the greatest % of employees -->
@@ -90,12 +87,12 @@
             <!-- Here is another section  -->
             <section class="w-full">
                 <p class="mt-4 text-2xl md:text-3xl lg:text-3xl font-bold text-orange-600">What jobs are at risk today?</p>
-                <div id="barChart"></div>
+                
+                <svg id="barChart"></svg>
+                <script src="src/BarChart.js"></script>
                 <button id="filter20">Past 20 Years</button>
                 <button id="filter10">Past 10 Years</button>
                 <button id="filter5">Past 5 Years</button>
-                <script src="src/BarChart.js"></script>
-
 
                 <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Shifting Nature of Work: Embracing Change and Upskilling for the Future</p>
                 <p class="text-lg text-gray-800 mt-4">The .</p>
@@ -109,7 +106,7 @@
     </main>
 
     <footer class="border-t border-gray-200 px-0 py-5 text-center text-gray-500 text-sm w-full bg-white">
-        <p>Project By: Ritul K. Soni 2023 ©</p>
+        <p>Project By: Ritul K. Soni © 2023</p>
     </footer>
 
 </body>
