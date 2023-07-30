@@ -2,12 +2,12 @@
 let colorAssignments = {};
 
 // Load the data
-async function drawBarChart(timeFilter, title) {
+async function drawBarChart(baseYear, latestYear, title) {
   let rawData = await d3.csv('data/Adjusted CSV.csv');
   rawData = rawData.filter(d => d.OCC_TITLE !== "All Occupations")
                    .map(d => ({year: +d.YEAR, occupation: d.OCC_TITLE, tot_emp: +d.TOT_EMP}));
 
-  const percentChangeData = calculatePercentChange(rawData, timeFilter);
+  const percentChangeData = calculatePercentChange(rawData, baseYear, latestYear);
 
   // Define SVG dimensions
   const margin = {top: 80, right: 200, bottom: 400, left: 100},
@@ -122,7 +122,7 @@ async function drawBarChart(timeFilter, title) {
           .style("opacity", 0);
   });
 }
-function calculatePercentChange(data, yearDiff) {
+function calculatePercentChange(data, baseYear, latestYear) {
   const pivotData = {};
   data.forEach(d => {
     if (!(d.occupation in pivotData)) {
@@ -134,12 +134,10 @@ function calculatePercentChange(data, yearDiff) {
   const percentChangeData = [];
   for (let title in pivotData) {
     const years = Object.keys(pivotData[title]).map(Number);
-    const latestYear = Math.max(...years);
-    const baseYear = latestYear - yearDiff;
-  
+
     // Filter out years that don't match the baseYear or latestYear
     const validYears = years.filter(year => year === baseYear || year === latestYear);
-    
+
     if (validYears.length === 2) {
         const changePercent = (pivotData[title][latestYear] - pivotData[title][baseYear]) / pivotData[title][baseYear] * 100;
         const startEmployment = pivotData[title][baseYear];
@@ -161,21 +159,21 @@ function calculatePercentChange(data, yearDiff) {
 
 
 
-function updateChart(timeFilter, title) {
+function updateChart(baseYear, latestYear, title) {
   d3.select("#barChart").selectAll("*").remove();
-  drawBarChart(timeFilter, title);
+  drawBarChart(baseYear, latestYear, title);
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   document.getElementById("filter20").addEventListener("click", function() { 
-    updateChart(20, "Past 20 Years Occupations with Greatest % Growth in Employment"); 
+    updateChart(2002, 2022, "Past 20 Years Occupations with Greatest % Growth in Employment"); 
   });
   document.getElementById("filter10").addEventListener("click", function() { 
-    updateChart(10, "Past 10 Years Occupations with Greatest % Growth in Employment");
+    updateChart(2012, 2022, "Past 10 Years Occupations with Greatest % Growth in Employment");
   });
   document.getElementById("filter5").addEventListener("click", function() { 
-    updateChart(5, "Past 5 Years Occupations with Greatest % Growth in Employment");
+    updateChart(2017, 2022, "Past 5 Years Occupations with Greatest % Growth in Employment");
   });
 
-  drawBarChart(20, "Top 10 Occupations with Greatest % Growth in Employment in the Past 20 Years");
+  drawBarChart(2002, 2022, "Top 10 Occupations with Greatest % Growth in Employment in the Past 20 Years");
 });
