@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/d3-annotation"></script>
     <script src="https://unpkg.com/d3-svg-annotation@2.5.1/d3-annotation.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 
     <style>
         .tooltip {
@@ -76,7 +77,9 @@
                 <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Impact of AI on Jobs: Lessons from the Telephone Operator Displacement</p>
                 <p class="text-lg text-gray-800 mt-4">The story of telephone operators serves as an essential case study for understanding the potential impact of artificial intelligence (AI) on the job market. As AI and automation continue to advance, various other routine-based roles could face a similar fate. Jobs that involve repetitive tasks, simple decision-making processes, and rule-based operations might be vulnerable to displacement by intelligent machines. To adapt to the changing landscape, workers must focus on developing skills that complement AI rather than compete with it. By acquiring problem-solving abilities, critical thinking, and creativity, individuals can position themselves for new roles that emerge in symbiosis with AI technologies.</p>
                 <svg id="TelephoneOP"></svg>
-                <button id="animateButton">Click Me</button>
+                <button id="animateButton" 
+                >Click Me</button>
+            
                 <script src="src/LineChart.js"></script>
                 <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Shifting Nature of Work: Embracing Change and Upskilling for the Future</p>
                 <p class="text-lg text-gray-800 mt-4">The decline of telephone operators and the rise of automation highlight the ever-evolving nature of work in our technologically-driven world. Rather than fearing job displacement, it is crucial for both workers and industries to embrace change and proactively upskill to stay relevant. As certain jobs become automated, new opportunities arise in more complex and specialized fields. By fostering a culture of continuous learning and adaptability, individuals can future-proof their careers and thrive in a job market that leverages the power of AI and automation.</p>
@@ -93,9 +96,11 @@
 
                 <svg id="barChart"></svg>
                 <script src="src/BarChart.js"></script>
-                <button id="filter20">Past 20 Years</button>
-                <button id="filter10">Past 10 Years</button>
-                <button id="filter5">Past 5 Years</button>
+                <div class="container">
+                    <button id="filter20">Past 20 Years</button>
+                    <button id="filter10">Past 10 Years</button>
+                    <button id="filter5">Past 5 Years</button>
+                </div>
                 
                 <p class="mt-4 text-2xl md:text-3xl lg:text-2xl font-bold text-orange-600">The Shifting Nature of Work: Embracing Change and Upskilling for the Future</p>
                 <p class="text-lg text-gray-800 mt-4">The .</p>

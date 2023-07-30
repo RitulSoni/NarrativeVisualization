@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;  /* Adjust this for the gap between the buttons */
+    margin-top: -50px;
+    
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    text-align: center;
+    font-size: 16px;
+    transition: transform 0.3s;
+    cursor: pointer;
+    outline: none;
+}
+
+#animateButton {
+    display: block;
+    margin: 20px auto;
+    background-color: #4CAF50; /* Green */
+}
+
+#animateButton:hover {
+    transform: scale(1.1);
+}
+
+#filter20 {
+    background-color: #2196F3; /* Blue */
+}
+
+#filter20:hover {
+    transform: scale(1.1);
+}
+
+#filter10 {
+    background-color: #4CAF50; /* Green */
+}
+
+#filter10:hover {
+    transform: scale(1.1);
+}
+
+#filter5 {
+    background-color: #FF5722; /* Deep Orange */
+}
+
+#filter5:hover {
+    transform: scale(1.1);
+}

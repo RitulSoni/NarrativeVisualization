@@ -2,7 +2,7 @@
 let colorAssignments = {};
 
 // Load the data
-async function drawBarChart(timeFilter) {
+async function drawBarChart(timeFilter, title) {
   let rawData = await d3.csv('data/Adjusted CSV.csv');
   rawData = rawData.filter(d => d.OCC_TITLE !== "All Occupations")
                    .map(d => ({year: +d.YEAR, occupation: d.OCC_TITLE, tot_emp: +d.TOT_EMP}));
@@ -28,7 +28,7 @@ async function drawBarChart(timeFilter) {
      .attr("text-anchor", "middle")  
      .style("font-size", "24px") 
      .style("font-weight", "bold")  
-     .text("Top 10 Occupations with Greatest Employment Growth");
+     .text(title);
 
   // Create scales
   const xScale = d3.scaleBand().range([0, width]).padding(0.2),
@@ -144,15 +144,21 @@ function calculatePercentChange(data, yearDiff) {
   return percentChangeData.slice(0, 10);
 }
 
-function updateChart(timeFilter) {
+function updateChart(timeFilter, title) {
   d3.select("#barChart").selectAll("*").remove();
-  drawBarChart(timeFilter);
+  drawBarChart(timeFilter, title);
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  document.getElementById("filter20").addEventListener("click", function() { updateChart(20); });
-  document.getElementById("filter10").addEventListener("click", function() { updateChart(10); });
-  document.getElementById("filter5").addEventListener("click", function() { updateChart(5); });
+  document.getElementById("filter20").addEventListener("click", function() { 
+    updateChart(20, "Past 20 Years Occupations with Greatest % Growth in Employment"); 
+  });
+  document.getElementById("filter10").addEventListener("click", function() { 
+    updateChart(10, "Past 10 Years Occupations with Greatest % Growth in Employment");
+  });
+  document.getElementById("filter5").addEventListener("click", function() { 
+    updateChart(5, "Past 5 Years Occupations with Greatest % Growth in Employment");
+  });
 
-  drawBarChart(20);
+  drawBarChart(20, "Top 10 Occupations with Greatest % Growth in Employment in the Past 20 Years");
 });
