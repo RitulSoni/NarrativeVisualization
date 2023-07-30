@@ -6,6 +6,14 @@
     
 }
 
+.container2 {
+    display: flex;
+    justify-content: center;
+    gap: 50px;  /* Adjust this for the gap between the buttons */
+    margin-top: 10px;
+    
+}
+
 button {
     width: 200px;
     height: 50px;
@@ -24,6 +32,16 @@ button {
     display: block;
     margin: 20px auto;
     background-color: #4CAF50; /* Green */
+}
+
+#salaryButton{
+    display: block;
+    margin: 20px auto;
+    background-color: #4CAF50; /* Green */
+}
+
+#salaryButton:hover {
+    transform: scale(1.1);
 }
 
 #animateButton:hover {

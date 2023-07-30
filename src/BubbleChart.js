@@ -78,11 +78,11 @@ async function drawBubbleChart() {
       .call(d3.axisLeft(yScale))
       .append("text") // More descriptive label
       .attr("x", -height / 2)
-      .attr("y", -margin.left * 0.8)
+      .attr("y", -385)
       .attr("transform", "rotate(-90)")
       .attr("fill", "black")
       .style("text-anchor", "middle")
-      .text("Job Title");
+      .text("Job Titles");
 
   g.append("text")
       .attr("x", width / 2)
