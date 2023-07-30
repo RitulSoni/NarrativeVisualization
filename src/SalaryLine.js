@@ -10,6 +10,7 @@ d3.select('#salaryButton').on('click', () => {
 let animated = false;
 
 async function drawLineChart() {
+  d3.select("#TelephoneSalary").selectAll("*").remove(); // Clear previous chart
   let data = await d3.csv('data/Adjusted CSV.csv');
   
   data = data.filter(d => d.OCC_TITLE === 'Telephone Operators' || d.OCC_TITLE === 'Telephone operators'|| d.OCC_TITLE === 'telephone operators');
@@ -17,10 +18,17 @@ async function drawLineChart() {
   // Generate separate line data for A_Mean and H_Mean
   const lineData = data.map(d => ({year: +d.YEAR, value: +d[selectedMean], tot_emp: +d.TOT_EMP}));
 
-  const svg = d3.select("#TelephoneSalary"),
-        margin = {top: 70, right: 200, bottom: 50, left: 100},
-        width = 1460 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+  const svgWidth = window.innerWidth * 0.9, // Adjust as needed
+  svgHeight = window.innerHeight * 0.5, // Adjust as needed
+  margin = {top: 70, right: 200, bottom: 50, left: 100},
+  width = svgWidth - margin.left - margin.right,
+  height = svgHeight - margin.top - margin.bottom;
+
+
+  const svg = d3.select("#TelephoneSalary")
+    .attr("width", svgWidth)
+    .attr("height", svgHeight)
+    .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
 
   svg.attr("width", width + margin.left + margin.right)
      .attr("height", height + margin.top + margin.bottom);
@@ -144,3 +152,4 @@ async function drawLineChart() {
 }
 
 drawLineChart();
+window.addEventListener("resize", drawLineChart);
